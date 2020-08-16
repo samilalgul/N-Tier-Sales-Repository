@@ -8,5 +8,6 @@ namespace Sales.API.DTOs
     public class CUDCustomerDTO
     {
         public string Name { get; set; }
+
     }
 }

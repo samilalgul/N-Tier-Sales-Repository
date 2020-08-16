@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
+using Sales.API.DTOs;
 using Sales.Entities.Interfaces;
 using Sales.Entities.Models;
 

@@ -14,6 +14,7 @@ namespace Sales.DAL
         private ISaleRepository saleRepository;
         private ICustomerRepository customerRepository;
         private IUserRepository userRepository;
+        private IProductRepository productRepository;
 
         public UnitOfWork(SalesDbContext salesDbContext)
         {
@@ -25,6 +26,8 @@ namespace Sales.DAL
         public ICustomerRepository Customers => customerRepository = customerRepository ?? new CustomerRepository(salesDbContext);
 
         public IUserRepository Users => userRepository = userRepository ?? new UserRepository(salesDbContext);
+
+        public IProductRepository Products => productRepository = productRepository ?? new ProductRepository(salesDbContext);
 
         public async Task<int> CommitAsync()
         {

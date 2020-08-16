@@ -1,17 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Sales.API.DTOs;
 using Sales.API.Validators;
 using Sales.Entities.Interfaces;
 using Sales.Entities.Models;
+using Sales.Entities.Logger;
 
 namespace Sales.API.Controllers
 {
+
     [Route("api/[controller]")]
     [ApiController]
     public class CustomerController : ControllerBase
@@ -27,6 +26,7 @@ namespace Sales.API.Controllers
         [HttpGet("")]
         public async Task<ActionResult<IEnumerable<CustomerDTO>>> GetAllCustomers()
         {
+            Logger.Log("GetAllCustomer Method Log Msg");
             var customers = await _customerService.GetAllCustomers();
             var customerDTO = _mapper.Map<IEnumerable<Customer>, IEnumerable<CustomerDTO>>(customers);
             return Ok(customerDTO);

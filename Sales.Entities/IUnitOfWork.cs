@@ -10,8 +10,8 @@ namespace Sales.Entities
     {
         ISaleRepository Sales { get; }
         ICustomerRepository Customers { get; }
-
         IUserRepository Users { get; }
+        IProductRepository Products { get; }
         Task<int> CommitAsync();
     }
 }
