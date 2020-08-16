@@ -62,5 +62,7 @@ namespace Sales.DAL.Repositories
                 .Where(s => s.CustomerId == customerId)
                 .ToListAsync();
         }
+
+        //Product Mehtods will be included
     }
 }

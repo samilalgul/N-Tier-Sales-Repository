@@ -17,28 +17,38 @@ using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using Sales.BLL;
 using Sales.DAL;
+using Sales.DAL.Repositories;
 using Sales.Entities;
 using Sales.Entities.Interfaces;
+using Sales.Entities.Repositories;
 
 namespace Sales.API
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        private AutoMapper.Configuration.IConfiguration configuration;
+
+        public Startup(Microsoft.Extensions.Configuration.IConfiguration configuration)
         {
             Configuration = configuration;
         }
 
-        public IConfiguration Configuration { get; }
+        public Startup(AutoMapper.Configuration.IConfiguration configuration)
+        {
+            this.configuration = configuration;
+        }
+
+        public Microsoft.Extensions.Configuration.IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
             services.AddDbContext<SalesDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Default"), x => x.MigrationsAssembly("Sales.DAL")));
-            services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddTransient<ISaleService, SaleService>();
             services.AddTransient<ICustomerService, CustomerService>();
+            services.AddTransient<IProductService, ProductService>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
             //Automapper
             services.AddAutoMapper(typeof(Startup));
             //Authentication 

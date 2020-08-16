@@ -10,10 +10,13 @@ namespace Sales.DAL.Repositories
 {
     public class CustomerRepository : Repository<Customer>, ICustomerRepository
     {
+
         private SalesDbContext SalesDbContext
         {
             get { return Context as SalesDbContext; }
         }
+
+
         public CustomerRepository(DbContext context) : base(context)
         {
         }
@@ -45,5 +48,6 @@ namespace Sales.DAL.Repositories
                 .Include(c => c.Sales)
                 .SingleOrDefaultAsync(c => c.Id == id);
         }
+
     }
 }
